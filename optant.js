@@ -36,6 +36,9 @@ function optant(callback) {
     }
     argv.push( isNaN(arg) ? arg : +arg );
   })
+
+  if (!callback) return [argv,options];
+
   Promise.resolve(callback(argv,options))
   .then( res => {
     if (typeof res === 'object') {
