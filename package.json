@@ -1,0 +1,9 @@
+{
+  "name": "optant",
+  "version": "1.0.0",
+  "description": "Minimalistic command line option parsing for Node",
+  "main": "index.js",
+  "repository": "https://github.com/zocky/optant.git",
+  "author": "Zoran Obradović <zockyo@gmail.com>",
+  "license": "MIT"
+}
