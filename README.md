@@ -4,7 +4,7 @@ Minimalistic command line option parsing for Node scripts.
 
 ## Synopsis
 
-Optant is a tiny library that parses any arguments and options supplied to your script
+OptAnt is a tiny library that parses any arguments and options supplied to your script
 on the command line. It's perfect when you need to write a script that reads some arguments and/or options 
 from the command line, but don't want to invest time and energy into constructing a complex 
 setup with commander or other more advanced tools.
@@ -41,8 +41,12 @@ other values will be returned as strings. Arguments that are numbers will also b
 ## Advanced usage
 
 
-Alternatively, you can call `optant` with a callback, which will be called with an array of 
-positional arguments and an object of boolean or string options. The callback may return a 
+Alternatively, you can use Optant as scaffolding
+for your sheel script. It will parse the options and arguments,
+print out the results, and exit the process with the correct
+exit code.
+
+Call `optant` with a callback, which will be called with an array of positional arguments and an object of boolean or string options. The callback may return a 
 result or a promise.
 
 Once the result is returned, or the promise is resolved, optant
