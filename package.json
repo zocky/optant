@@ -1,6 +1,6 @@
 {
   "name": "optant",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "description": "Minimalistic command line option parsing for Node",
   "main": "optant.js",
   "repository": "https://github.com/zocky/optant.git",
