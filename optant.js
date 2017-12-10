@@ -26,12 +26,13 @@ function optant(callback) {
   const options = {}
   var match;
   args.forEach(arg => {
-    if (match = arg.match(/^--?(\w[\w\-]*)$/)) {
-      options[match[1]] = true;
-      return;
-    }
-    if (match = arg.match(/^--?(\w[\w\-]*)=(.*)$/)) {
-      options[match[1]] = isNaN(match[2]) ? match[2] : +match[2];
+    if (match = arg.match(/^--?(\w[\w\-]*)(?:=(.*))?$/)) {
+      var [,name,value]=match;
+      name = name.replace(/-+(.)/g,($,$1)=>$1.toUpperCase());
+      console.log(name,value)
+      if (value===undefined) options[name] = true;
+      else if (value=='' || isNaN(value)) options[name] = value;
+      else options[name] = +value;
       return;
     }
     argv.push( isNaN(arg) ? arg : +arg );

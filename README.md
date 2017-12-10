@@ -29,12 +29,15 @@ returned in the `argv` array.
 Options without values will be treated as boolean, options with number values will be converted to numbers,
 other values will be returned as strings. Arguments that are numbers will also be converted to numbers.
 
+Option names that include dashes will be camelCased.
+
 ### Examples
 | command line | argv | options |
 | ------------ | ---- | ------- |
 | `yourscript inputfile outputfile` | `["inputfile","outputfile"]` | `{}` |
 | `yourscript -v` | `[]` | `{v:true}` | 
 | `yourscript --help` | `[]` | `{help:true}` | 
+| `yourscript --char-count=100` | `[]` | `{charCount:100}` | 
 | `yourscript 20 30 --output=outputfile` | `[20,30]` | `{output:"outputfile"}` | 
 | `yourscript -b --count=10 inputfile` | `["inputfile"]` | `{b:true, output:10}` | 
 
