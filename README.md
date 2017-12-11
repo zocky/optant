@@ -95,7 +95,7 @@ optant( ([
   }) => {
   
   // --version
-  if (version||v) return 'v1.0';
+  if (version || v) return 'v1.0';
   
   // --help
   if (help || h || !inputfile) return 'Usage: myscript inputfile [outputfile] [--force|-f] [--lines=10]';
