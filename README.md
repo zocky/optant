@@ -43,11 +43,16 @@ Option names that include dashes will be camelCased.
 
 ## Advanced usage
 
-
 Alternatively, you can use Optant as scaffolding
 for your shell script. It will parse the options and arguments,
 print out the results, and exit the process with the correct
 exit code.
+
+``` javascript
+optant((argv,options)=> {
+  // do stuff, then return a result or throw an error
+})
+```
 
 Call `optant` with a callback, which will be called with an array of positional arguments and an object of boolean or string options.
 The callback may return a result or a promise.
@@ -84,9 +89,18 @@ optant( ([
   ],{
     skip:0, 
     lines:10,
-    force,
-    f
+    force, f,
+    help, h,
+    version, v
   }) => {
+  
+  // --version
+  if (version||v) return 'V1.0';
+  
+  // --help
+  if (help || h || !inputfile) return 'Usage: myscript inputfile [outputfile] [--force|-f] [--lines=10]';
+  
+  // script
   if (fs.existsSync(outputfile) && !force && !f) throw 'Will not overwrite without --force or -f';
   var input = fs.readFileSync(inputfile,'utf8');
   var output = input.split(/\n/).slice(skip,skip+lines).join('\n');
@@ -140,7 +154,7 @@ optant( async (argv,options) => {
 ```
 
 ## Installation
-`npm install optant` or `yarn install optant`
+`npm install optant` or `yarn add optant`
 
 ## License
 
