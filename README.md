@@ -49,7 +49,7 @@ print out the results, and exit the process with the correct
 exit code.
 
 ``` javascript
-optant((argv,options)=> {
+optant( (argv,options) => {
   // do stuff, then return a result or throw an error
 })
 ```
