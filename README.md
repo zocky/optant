@@ -48,7 +48,7 @@ for your shell script. It will parse the options and arguments,
 print out the results, and exit the process with the correct
 exit code.
 
-``` javascript
+```javascript
 optant( (argv,options) => {
   // do stuff, then return a result or throw an error
 })
