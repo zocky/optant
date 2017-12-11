@@ -101,7 +101,9 @@ optant( ([
   if (help || h || !inputfile) return 'Usage: myscript inputfile [outputfile] [--force|-f] [--lines=10]';
   
   // script
-  if (fs.existsSync(outputfile) && !force && !f) throw 'Will not overwrite without --force or -f';
+  if (fs.existsSync(outputfile) && !force && !f) {
+    throw new Error(`${outputfile} exists. Use --force or -f to overwrite.`);
+  }
   var input = fs.readFileSync(inputfile,'utf8');
   var output = input.split(/\n/).slice(skip,skip+lines).join('\n');
   fs.writeFileSync(outputfile);
