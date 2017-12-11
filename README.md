@@ -85,10 +85,10 @@ const optant = require('optant');
 
 optant( ([
     inputfile,
-    outputfile=inputfile+'.out'
+    outputfile = inputfile+'.out'
   ],{
-    skip:0, 
-    lines:10,
+    skip: 0, 
+    lines: 10,
     force, f,
     help, h,
     version, v
