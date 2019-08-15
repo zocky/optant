@@ -103,7 +103,7 @@ optant( ([
   if (version) return 'v1.0';
   
   // help = --help or -h
-  if (help || h || !inputfile) return 'Usage: myscript inputfile [outputfile] [--force] [-n|--lines=10] [-s|--skip=0]';
+  if (help || !inputfile) return 'Usage: myscript inputfile [outputfile] [--force] [-n|--lines=10] [-s|--skip=0]';
   
   // script
   // force = --force 
