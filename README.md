@@ -19,7 +19,7 @@ Optant can be used in two ways:
 ## Basic usage
 
 ```bash
-npm install optant
+$ npm install optant
 ```
 
 ```javascript
