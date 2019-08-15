@@ -18,6 +18,10 @@ Optant can be used in two ways:
 
 ## Basic usage
 
+```bash
+npm install optant
+```
+
 ```javascript
 const optant = require('optant');
 const [argv,options] = optant();
