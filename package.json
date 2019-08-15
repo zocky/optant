@@ -1,6 +1,6 @@
 {
   "name": "optant",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Minimalistic command line option parsing for Node",
   "main": "optant.js",
   "scripts": {
