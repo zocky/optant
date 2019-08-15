@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Minimalistic command line option parsing for Node",
   "main": "optant.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
   "repository": "https://github.com/zocky/optant.git",
   "author": "Zoran Obradović (https://github.com/zocky)",
   "license": "MIT"

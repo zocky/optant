@@ -22,9 +22,9 @@ const optant = require('optant');
 const [argv,options] = optant();
 ```
 
-Optant will recognize options beginning with one or two dashes, and optionally followed by an equals
+Optant will recognize short and long options, beginning with one or two dashes, and optionally followed by an equals
 sign and a string value. These will be returned in the `options` object. All other arguments will be 
-returned in the `argv` array.
+returned in the `argv` array. 
 
 Options without values will be treated as boolean, options with number values will be converted to numbers,
 other values will be returned as strings. Arguments that are numbers will also be converted to numbers.
@@ -36,17 +36,18 @@ Option names that include dashes will be camelCased.
 | ------------ | ---- | ------- |
 | `yourscript inputfile outputfile` | `["inputfile","outputfile"]` | `{}` |
 | `yourscript -v` | `[]` | `{v:true}` | 
+| `yourscript -abc` | `[]` | `{a:true,b:true,c:true}` | 
 | `yourscript --help` | `[]` | `{help:true}` | 
 | `yourscript --char-count=100` | `[]` | `{charCount:100}` | 
 | `yourscript 20 30 --output=outputfile` | `[20,30]` | `{output:"outputfile"}` | 
 | `yourscript -b --count=10 inputfile` | `["inputfile"]` | `{b:true, output:10}` | 
 
+**NOTE** Option arguments without equals signs are not supported.
+
 ## Advanced usage
 
-Alternatively, you can use Optant as scaffolding
-for your shell script. It will parse the options and arguments,
-print out the results, and exit the process with the correct
-exit code.
+Alternatively, you can use Optant as scaffolding for your shell script. It will parse the options and arguments,
+optionally print out the results, and exit the process with the correct exit code.
 
 ```javascript
 optant( (argv,options) => {
@@ -54,26 +55,15 @@ optant( (argv,options) => {
 })
 ```
 
-Call `optant` with a callback, which will be called with an array of positional arguments and an object of boolean or string options.
-The callback may return a result or a promise.
+Call `optant` with a callback, which will be called with an array of positional arguments and an object of boolean, string or numerical options.
+The callback can return a result or a promise, or nothing.
 
-Once the result is returned, or the promise is resolved, optant
-will print out any results and exit the process.
+Once a result is returned, or the promise is resolved, optant will print out any results and exit the process. 
 
-- Returned scalars will be printed to `stdout`, and the process
-  will exit with exit code 0.
-- Returned objects will be printed as `stdout `
-  as formatted JSON, and the process will exits with code 0. If the returned object is not JSONable, the process will exit with code -1, and an error message will be displayed on
-  `stderr`. 
-- If an error is thrown, it will be reported to `stderr` and
-  the process will exit with code -1.
-- If nothing is returned, "OK" will be printed to `stderr`
-  and the process will exit with code 0.
-
-**Note:** If you want to display progress messages in your
-callback, it's probably best to print them to `stderr` using
-`process.stderr.write`, to avoid polluting the output 
-of your script. 
+- Returned scalars will be printed to `stdout`, and the process will exit with exit code `0`.
+- Returned objects will be printed to `stdout ` as formatted JSON, and the process will exit with code `0`. If the returned object is not JSONable, the process will exit with code `1`, and an error message will be displayed on `stderr`. 
+- If an error is thrown, it will be reported to `stderr` and the process will exit with code `1`. If the error that was thrown includes a numerical property `.code`, that will used instead.
+- If nothing (or `undefined`) is returned, the process will print nothing and exit with code `0`. 
 
 ### ES6 destructuring and default values
 
@@ -88,7 +78,7 @@ optant( ([
     outputfile = inputfile+'.out'
   ],{
     s = 0, skip = s, 
-    n = 10, lines = l,
+    n = 10, lines = n,
     force,
     h, help = h,
     v, version = v
@@ -163,4 +153,4 @@ optant( async (argv,options) => {
 
 ## License
 
-MIT License - Use this software as you please.
+MIT License - Use this software as you please, as long as you include the license notice in any distributions.
