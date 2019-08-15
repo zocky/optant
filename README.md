@@ -12,6 +12,7 @@ setup with commander or other more advanced tools.
 Optant can be used in two ways:
 * Simply calling `optant()` with no arguments will return an array containing two elements: the first is an array of
   supplied positional arguments, and the second is an object containing supplied options. See **Basic usage**.
+  
 * Alternatively, you can call `optant` with a callback function that will receive the parsed arguments and options. 
   Optant wil then wait for the function to return its result (or error) and output it appropriately. See **Advanced usage**.
 
