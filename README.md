@@ -84,27 +84,30 @@ variables, and provide them with default values. Consider the following script t
 const optant = require('optant');
 
 optant( ([
-    inputfile,
+    inputfile, 
     outputfile = inputfile+'.out'
   ],{
-    skip: 0, 
-    lines: 10,
-    force, f,
-    help, h,
-    version, v
+    s = 0, skip = s, 
+    n = 10, lines = l,
+    force,
+    h, help = h,
+    v, version = v
   }) => {
   
-  // --version
-  if (version || v) return 'v1.0';
+  // version = --version or -v
+  if (version) return 'v1.0';
   
-  // --help
-  if (help || h || !inputfile) return 'Usage: myscript inputfile [outputfile] [--force|-f] [--lines=10]';
+  // help = --help or -h
+  if (help || h || !inputfile) return 'Usage: myscript inputfile [outputfile] [--force] [-n|--lines=10] [-s|--skip=0]';
   
   // script
+  // force = --force 
   if (fs.existsSync(outputfile) && !force && !f) {
-    throw new Error(`${outputfile} exists. Use --force or -f to overwrite.`);
+    throw new Error(`${outputfile} exists. Use --force to overwrite.`);
   }
   var input = fs.readFileSync(inputfile,'utf8');
+  // skip = --skip or --s
+  // lines = --lines or -n
   var output = input.split(/\n/).slice(skip,skip+lines).join('\n');
   fs.writeFileSync(outputfile);
 });
