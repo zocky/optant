@@ -1,22 +1,33 @@
 # Optant
-
 Minimalistic command line option parsing for Node scripts. 
-
-## Synopsis
 
 Optant is a tiny library that parses any arguments and options supplied to your script
 on the command line. It's perfect when you need to write a script that reads some arguments and/or options 
 from the command line, but don't want to invest time and energy into constructing a complex 
 setup with commander or other more advanced tools.
 
+- [Usage](#usage)
+  - [Basic usage](#basic-usage)
+  - [Examples](#examples)
+  - [Advanced usage](#advanced-usage)
+  - [ES6 destructuring and default values](#es6-destructuring-and-default-values)
+- [Recipes](#recipes)
+  - [Sync](#sync)
+  - [Old-Style Async](#old-style-async)
+  - [Promise](#promise)
+  - [Async/Await](#asyncawait)
+- [License](#license)
+
+## Usage
+
 Optant can be used in two ways:
 * Simply calling `optant()` with no arguments will return an array containing two elements: the first is an array of
   supplied positional arguments, and the second is an object containing supplied options. See **Basic usage**.
-  
+
 * Alternatively, you can call `optant` with a callback function that will receive the parsed arguments and options. 
   Optant wil then wait for the function to return its result (or error) and output it appropriately. See **Advanced usage**.
 
-## Basic usage
+### Basic usage
 
 ```bash
 $ npm install optant
@@ -49,7 +60,7 @@ Option names that include dashes will be camelCased.
 
 **NOTE** Option arguments without equals signs are not supported.
 
-## Advanced usage
+### Advanced usage
 
 Alternatively, you can use Optant as scaffolding for your shell script. It will parse the options and arguments,
 optionally print out the results, and exit the process with the correct exit code.
@@ -60,8 +71,7 @@ optant( (argv,options) => {
 })
 ```
 
-Call `optant` with a callback, which will be called with an array of positional arguments and an object of boolean, string or numerical options.
-The callback can return a result or a promise, or nothing.
+Call `optant` with a callback, which will be called with two arguments: an array of positional arguments and an object of boolean, string or numerical options. The callback can return a result or a promise, or nothing.
 
 Once a result is returned, or the promise is resolved, optant will print out any results and exit the process. 
 
@@ -108,10 +118,10 @@ optant( ([
 });
 ```
 
-### Recipes
+## Recipes
 
 
-#### Sync 
+### Sync 
 
 ```javascript
 optant((argv,options) => {
@@ -120,7 +130,7 @@ optant((argv,options) => {
 });
 ```
 
-#### Old-Style Async
+### Old-Style Async
 
 ```javascript
 optant( (argv,options) => new Promise(resolve,reject) {
@@ -132,7 +142,7 @@ optant( (argv,options) => new Promise(resolve,reject) {
 });
 ```
 
-#### Promise
+### Promise
 
 ```javascript
 optant( (argv,options) => {
@@ -144,17 +154,13 @@ optant( (argv,options) => {
 });
 ```
 
-#### Async/Await
+### Async/Await
 ```javascript
-
 optant( async (argv,options) => {
   var result = await asyncFunction(...);
   return result; // or throw to signal an error
 });
 ```
-
-## Installation
-`npm install optant` or `yarn add optant`
 
 ## License
 
